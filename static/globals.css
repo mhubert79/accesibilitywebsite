@@ -263,19 +263,12 @@ legend {
   padding: 90px 0 60px;
 }
 
-.site-nav {
-  padding: 0;
-  border-bottom: 1px solid var(--border);
-  background: var(--card);
-  position: relative;
-  z-index: 20;
-}
-
 .title-bar {
   display: none;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0;
+  padding: 0;
+  margin: 0;
   background: var(--card);
   border-bottom: 1px solid var(--border);
 }
@@ -286,17 +279,15 @@ legend {
 }
 
 .top-bar {
+  padding: 0 4rem 0 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /*
-  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+}
 
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 0.4rem 0.75rem;
-  box-shadow: 0 14px 24px rgba(42, 38, 34, 0.08);*/
+.top-bar button {
+  margin-top: 1rem; 
 }
 
 .top-bar,
@@ -315,6 +306,8 @@ legend {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin: 0;
+  padding: 0;
 }
 
 .site-nav__brand {
@@ -394,24 +387,38 @@ legend {
 .nav-actions {
   display: inline-flex;
   gap: 0.5rem;
+  align-items: center;
 }
+
+
+/**** Media Query +**/ 
 
 @media (max-width: 639px) {
   .site-nav {
     padding: 12px 0;
   }
 
+  .grid-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .title-bar {
     display: flex;
     position: relative;
     z-index: 22;
+    padding: 0 2rem 0 2rem;
+  }
+
+  .title-bar button {
+    margin-top: 1rem;
   }
 
   .top-bar {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.65rem;
-    padding: 0.5rem 0.75rem 0.75rem;
+    padding: 2rem 0.75rem 2rem;
     width: 100%;
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -444,6 +451,10 @@ legend {
   .site-nav__menu a.is-active::after {
     left: 0;
     right: 0;
+  }
+
+  .site-nav__brand {
+    display: none;
   }
 
   .nav-actions {
