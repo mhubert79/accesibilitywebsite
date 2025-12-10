@@ -4615,6 +4615,7 @@ select:not([multiple]) {
   display: none;
 }
 
+<<<<<<< HEAD
 .menu-icon {
   position: relative;
   display: inline-block;
@@ -4667,6 +4668,8 @@ select:not([multiple]) {
           box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a;
 }
 
+=======
+>>>>>>> 6da02e2 (Added local Foundation css)
 .is-drilldown {
   position: relative;
   overflow: hidden;

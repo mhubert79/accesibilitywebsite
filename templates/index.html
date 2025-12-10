@@ -10,59 +10,44 @@
   <body>
     <header class="site-nav">
       <div class="grid-container">
-        <div class="grid-x grid-margin-x align-middle">
-          <div class="cell auto">
+        <div class="title-bar" data-responsive-toggle="site-menu" data-hide-for="medium">
+          <div class="title-bar-left">
             <a class="brand" href="#">
-              <span class="brand__mark"></span>
-              <span class="brand__name">passable</span>
+              <img src="../static/svg/passable_logo.svg">
             </a>
           </div>
-          <div class="cell shrink nav-actions">
+          <div class="title-bar-right">
+            <button class="button primary" type="button" data-toggle="site-menu" aria-controls="site-menu" aria-expanded="false" aria-label="Menü öffnen"><img src="../static/svg/menu.svg" alt=""></button>
+          </div>
+        </div>
+        <div class="top-bar" id="site-menu">
+          <div class="top-bar-left site-nav__links">
+            <div class="site-nav__brand">
+              <a class="brand" href="index.html">
+                <img src="../static/svg/passable_logo.svg">
+              </a>
+            </div>
+            <ul class="site-nav__menu menu" data-responsive-menu="accordion medium-horizontal">
+              <li><a class="is-active" href="#">Start</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Preise</a></li>
+              <li><a href="#">Ressourcen</a></li>
+              <li><a href="#">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="top-bar-right nav-actions">
             <button class="button hollow small">DE</button>
             <button class="button primary small">Scan starten</button>
           </div>
         </div>
       </div>
     </header>
-
     <main>
       <section class="hero grid-container">
         <div class="grid-x grid-margin-x align-middle">
           <div class="cell medium-6">
-            <div class="monitor">
-              <div class="monitor__pill">
-                <img src="../static/svg/triangle-alert.svg" alt="" class="icon-16">
-                <span>BFSG seit Juni 2025 verpflichtend</span>
-                <span class="monitor__pill__info">
-                  <img src="../static/svg/info.svg" alt="" class="icon-14">
-                  Info
-                </span>
-              </div>
-              <div class="monitor__card">
-                <div class="monitor__url">
-                  <img src="../static/svg/zap.svg" alt="" class="icon-14">
-                  <span>example.com</span>
-                </div>
-                <div class="monitor__progress">
-                  <div class="monitor__progress__header">
-                    <span>Accessibility-Scan</span>
-                    <span class="text-primary">100%</span>
-                  </div>
-                  <div class="progress">
-                    <span class="progress__fill" style="width: 100%;"></span>
-                  </div>
-                </div>
-                <ul class="monitor__checks">
-                  <li><img src="../static/svg/check.svg" alt="" class="icon-14">Farbkontraste validiert</li>
-                  <li><img src="../static/svg/check.svg" alt="" class="icon-14">Alt-Texte geprüft</li>
-                  <li><img src="../static/svg/check.svg" alt="" class="icon-14">Tastatur-Navigation OK</li>
-                  <li><img src="../static/svg/check.svg" alt="" class="icon-14">ARIA-Attribute korrekt</li>
-                  <li class="muted"><img src="../static/svg/check.svg" alt="" class="icon-14">Screenreader-Tests OK</li>
-                  <li class="muted"><img src="../static/svg/check.svg" alt="" class="icon-14">Formular-Labels geprüft</li>
-                </ul>
-              </div>
-              <div class="monitor__stand"></div>
-              <div class="monitor__base"></div>
+            <div class="hero__image">
+              <img src="https://placehold.co/520x400" alt="Illustration der Passable-Analyse" />
             </div>
           </div>
           <div class="cell medium-6 hero__copy">
@@ -74,8 +59,8 @@
             <p>Digitale Barrierefreiheit: Kein Luxus, sondern Menschenrecht. Passable analysiert Ihre Website nach WCAG 2.1 Standards. Finden Sie heraus, welche Barrieren Ihre Nutzer aussperren – und wie Sie diese beheben.</p>
             <div class="hero__actions">
               <button class="button primary large">
-                Kostenlosen Scan starten
-                <img src="../static/svg/arrow-right.svg" alt="" class="icon-16">
+              Kostenlosen Scan starten
+              <img src="../static/svg/arrow-right.svg" alt="" class="icon-16">
               </button>
               <p class="hero__hint">Dauert nur 2 Minuten • Keine Anmeldung erforderlich</p>
             </div>
@@ -96,7 +81,6 @@
           </div>
         </div>
       </section>
-
       <section class="section muted">
         <div class="grid-container text-center">
           <p class="eyebrow">So funktioniert die Analyse</p>
@@ -126,32 +110,12 @@
           </div>
         </div>
       </section>
-
       <section class="section">
         <div class="grid-container">
           <div class="grid-x grid-margin-x align-middle">
             <div class="cell medium-5">
-              <div class="monitor monitor--outline">
-                <div class="monitor__card compact">
-                  <div class="monitor__url">
-                    <img src="../static/svg/zap.svg" alt="" class="icon-14">
-                    <span>example.com</span>
-                  </div>
-                  <div class="monitor__progress">
-                    <div class="monitor__progress__header">
-                      <span>Accessibility-Scan</span>
-                      <span class="text-primary">100%</span>
-                    </div>
-                    <div class="progress">
-                      <span class="progress__fill" style="width: 100%;"></span>
-                    </div>
-                  </div>
-                  <ul class="monitor__checks compact">
-                    <li><img src="../static/svg/check.svg" alt="" class="icon-14">Farbkontrast validiert</li>
-                    <li><img src="../static/svg/check.svg" alt="" class="icon-14">Alt-Texte geprüft</li>
-                    <li><img src="../static/svg/check.svg" alt="" class="icon-14">Tastatur-Navigation OK</li>
-                  </ul>
-                </div>
+              <div class="hero__image">
+                <img src="https://placehold.co/480x320" alt="Beispielhafte Scan-Ansicht" />
               </div>
             </div>
             <div class="cell medium-7">
@@ -181,7 +145,6 @@
           </div>
         </div>
       </section>
-
       <section class="section muted">
         <div class="grid-container text-center">
           <p class="eyebrow">Warum Accessibility wichtig ist</p>
@@ -211,7 +174,6 @@
           </div>
         </div>
       </section>
-
       <section class="section">
         <div class="grid-container text-center">
           <h2>Was Sie im Report erhalten</h2>
@@ -261,7 +223,6 @@
           </div>
         </div>
       </section>
-
       <section class="brand-strip">
         <div class="grid-container">
           <div class="grid-x align-middle">
@@ -275,7 +236,6 @@
           </div>
         </div>
       </section>
-
       <section class="section muted faq">
         <div class="grid-container">
           <h2 class="text-center">Häufige Fragen</h2>
@@ -313,22 +273,20 @@
           </ul>
         </div>
       </section>
-
       <section class="section cta">
         <div class="grid-container text-center">
           <h2>Bereit für die Analyse?</h2>
           <p>Finden Sie in 2 Minuten heraus, wo Ihre Website Optimierungspotenzial hat.</p>
           <div class="cta__actions">
             <button class="button primary">
-              Scan starten
-              <img src="../static/svg/arrow-right.svg" alt="" class="icon-16">
+            Scan starten
+            <img src="../static/svg/arrow-right.svg" alt="" class="icon-16">
             </button>
           </div>
           <p class="hero__hint">Keine Kreditkarte • Keine Anmeldung • DSGVO-konform</p>
         </div>
       </section>
     </main>
-
     <footer class="site-footer">
       <div class="grid-container">
         <div class="grid-x align-middle">
@@ -346,12 +304,11 @@
         </div>
       </div>
     </footer>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"></script>
     <script>
-      $(document).foundation();
-      new Foundation.Accordion($('#faqAccordion'), { multiExpand: false, allowAllClosed: true });
+    $(document).foundation();
+    new Foundation.Accordion($('#faqAccordion'), { multiExpand: false, allowAllClosed: true });
     </script>
   </body>
 </html>
