@@ -56,6 +56,9 @@
   --border: var(--neutral-200);
   --input-background: var(--neutral-50);
   --ring: var(--primary-light);
+  --alert-bg: #f8e2e2;
+  --scrollbar-track: var(--muted);
+  --scrollbar-thumb: #bcc7b2;
 }
 
 .dark {
@@ -84,6 +87,9 @@
   --text-link: var(--primary);
   --text-link-hover: var(--primary-hover);
   --text-alert: var(--foreground);
+  --alert-bg: #3b1f1f;
+  --scrollbar-track: #1f211f;
+  --scrollbar-thumb: #5f6d53;
 }
 
 html {
@@ -256,7 +262,7 @@ legend {
 }
 
 .section.muted {
-  background: var(--neutral-100);
+  background: var(--muted);
 }
 
 .hero {
@@ -362,7 +368,7 @@ legend {
 
 .site-nav__menu a:hover,
 .site-nav__menu a:focus {
-  background: var(--neutral-100);
+  background: var(--muted);
   border-color: var(--border);
   color: var(--primary-active);
 }
@@ -487,7 +493,7 @@ legend {
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 0.9rem;
-  background: #f5f6f4;
+  background: var(--accent);
   border: 1px solid var(--border);
   border-radius: 999px;
   color: var(--text-base);
@@ -516,6 +522,7 @@ legend {
 
 .stat {
   padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 .stat:not(:last-child) {
@@ -562,7 +569,7 @@ legend {
 }
 
 .step-card {
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
@@ -574,7 +581,7 @@ legend {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: #f5f3f0;
+  background: var(--muted);
   display: grid;
   place-items: center;
   margin: 0 auto 1rem;
@@ -589,7 +596,7 @@ legend {
 
 .info-card,
 .report-card {
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
@@ -603,7 +610,7 @@ legend {
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: #f5f3f0;
+  background: var(--muted);
   display: grid;
   place-items: center;
   margin-bottom: 1rem;
@@ -636,7 +643,7 @@ legend {
 }
 
 .brand-strip {
-  background: #f5f6f4;
+  background: var(--accent);
   padding: 18px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -658,7 +665,7 @@ legend {
   box-shadow: 0 12px 30px rgba(58, 54, 50, 0.12);
   border: 1px solid var(--border);
   overflow: hidden;
-  background: #fff;
+  background: var(--card);
 }
 
 .accordion-title {
@@ -666,6 +673,11 @@ legend {
   color: var(--text-base);
   font-weight: 600;
   font-size: var(--fs-body);
+}
+
+.accordion-title:hover,
+.accordion-title:focus {
+  background: var(--accent);
 }
 
 .accordion-item {
@@ -680,6 +692,19 @@ legend {
   padding: 1rem 1.5rem 1.25rem;
   color: var(--text-base);
   font-size: var(--fs-body);
+}
+
+.dark .accordion {
+  border-color: var(--neutral-900);
+}
+
+.dark .accordion-item {
+  border-top-color: var(--neutral-900);
+}
+
+.dark .accordion-title:hover,
+.dark .accordion-title:focus {
+  background: var(--secondary);
 }
 
 .callout {
@@ -701,7 +726,7 @@ legend {
 }
 
 .callout.alert {
-  background-color: #f8e2e2;
+  background-color: var(--alert-bg);
   border-color: var(--destructive);
   color: var(--text-alert);
 }
@@ -739,7 +764,7 @@ legend {
 }
 
 .table tbody tr:nth-child(even) {
-  background-color: var(--neutral-50);
+  background-color: var(--accent);
 }
 
 .table tbody tr:hover {
@@ -781,7 +806,7 @@ pre {
 .site-footer {
   padding: 32px 0 40px;
   border-top: 1px solid var(--border);
-  background: #fff;
+  background: var(--card);
 }
 
 .site-footer .footer-links {
@@ -812,6 +837,17 @@ pre {
   color: var(--primary-hover);
 }
 
+.dark .theme-toggle-icon {
+  content: url("../static/svg/brightness.svg");
+}
+
+.dark .theme-toggle-icon,
+.dark img.icon-14,
+.dark img.icon-16,
+.dark img.icon-20 {
+  filter: brightness(0) invert(1);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
@@ -819,13 +855,13 @@ pre {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--neutral-100);
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #bcc7b2;
+  background: var(--scrollbar-thumb);
   border-radius: 6px;
-  border: 2px solid var(--neutral-100);
+  border: 2px solid var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -838,5 +874,5 @@ pre {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #bcc7b2 var(--neutral-100);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }

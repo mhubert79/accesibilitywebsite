@@ -33,6 +33,7 @@
               <li><a href="#">Preise</a></li>
               <li><a href="#">Ressourcen</a></li>
               <li><a href="#">Kontakt</a></li>
+              <li><a href="#"><img src="../static/svg/moon.svg" alt="" class="theme-toggle-icon">&nbsp;</a></li>
             </ul>
           </div>
           <div class="top-bar-right nav-actions">
@@ -309,6 +310,14 @@
     <script>
     $(document).foundation();
     new Foundation.Accordion($('#faqAccordion'), { multiExpand: false, allowAllClosed: true });
+    const moonIcon = document.querySelector('img[src$="moon.svg"]');
+    if (moonIcon) {
+      const toggleTarget = moonIcon.closest('a') || moonIcon;
+      toggleTarget.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.documentElement.classList.toggle('dark');
+      });
+    }
     </script>
   </body>
 </html>
