@@ -356,7 +356,7 @@ legend {
   --nav-link-pad-x: 1.05rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.8rem;
   padding: 0.7rem var(--nav-link-pad-x);
   color: var(--text-base);
   border-radius: 14px;
@@ -675,6 +675,18 @@ legend {
   font-size: var(--fs-body);
 }
 
+.dark .accordion-content:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.dark .accordion-title {
+ border: 1px solid var(--border);
+}
+
+.dark .accordion-content {
+  border: 1px solid var(--border);
+}
+
 .accordion-title:hover,
 .accordion-title:focus {
   background: var(--accent);
@@ -693,6 +705,14 @@ legend {
   color: var(--text-base);
   font-size: var(--fs-body);
 }
+
+.dark .accordion-content {
+  padding: 1rem 1.5rem 1.25rem;
+  color: var(--text-base);
+  background-color: var(--background);
+  font-size: var(--fs-body);
+}
+
 
 .dark .accordion {
   border-color: var(--neutral-900);
@@ -844,7 +864,8 @@ pre {
 .dark .theme-toggle-icon,
 .dark img.icon-14,
 .dark img.icon-16,
-.dark img.icon-20 {
+.dark img.icon-20,
+.dark .accordion-title::before {
   filter: brightness(0) invert(1);
 }
 
