@@ -192,6 +192,10 @@ button:focus,
   border-color: var(--primary-active);
 }
 
+.button.primary a {
+    color: var(--text-inverse);
+}
+
 .button.primary:hover {
   background-color: var(--primary-hover);
   border-color: var(--primary-hover);

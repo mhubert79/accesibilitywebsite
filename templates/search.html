@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website prüfen</title>
+    <link rel="stylesheet" type="text/css" href="../static/foundation.css">
+    <link rel="stylesheet" type="text/css" href="../static/globals.css">
+  </head>
+  <body class="page">
+    <header class="site-nav">
+      <div class="title-bar" data-responsive-toggle="site-menu" data-hide-for="medium">
+        <div class="title-bar-left">
+          <a class="brand" href="#">
+            <img src="../static/svg/passable_logo.svg">
+          </a>
+        </div>
+        <div class="title-bar-right">
+          <button class="button primary" type="button" data-toggle="site-menu" aria-controls="site-menu" aria-expanded="false" aria-label="Menü öffnen"><img src="../static/svg/menu.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="top-bar" id="site-menu">
+        <div class="top-bar-left site-nav__links">
+          <div class="site-nav__brand">
+            <a class="brand" href="index.html">
+              <img src="../static/svg/passable_logo.svg">
+            </a>
+          </div>
+          <ul class="site-nav__menu menu" data-responsive-menu="accordion medium-horizontal">
+            <li><a href="index.html">Start</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Preise</a></li>
+            <li><a href="#">Ressourcen</a></li>
+            <li><a href="#">Kontakt</a></li>
+            <li><a href="#"><img src="../static/svg/moon.svg" alt="" class="theme-toggle-icon">&nbsp;</a></li>
+          </ul>
+        </div>
+        <div class="top-bar-right nav-actions">
+          <button class="button hollow small">DE</button>
+          <button class="button primary small"><a href="search.html" title="Scan starten">Scan starten</a></button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="section muted">
+        <div class="grid-container text-center">
+          <h2>Website prüfen</h2>
+          <p>Gib eine beliebige URL ein, um Schriftgrößen, Text-/Hintergrundkontrast und Schätzungen für Schaltflächengrößen zu erfassen.</p>
+        </div>
+        <div class="section muted report-card">
+          <form class="form" id="scrape-form">
+            <input type="url" id="url-input" name="url" placeholder="https://example.com" required>
+            <button class="button" type="submit"><href="" title="">Scrape</a></button>
+          </form>
+        </div>
+        <div class="status" id="status"></div>
+        <div class="results-grid" id="results">
+          <div class="cell">
+            <div class="report-card">
+              <h2>Font Sizes</h2>
+              <ul id="font-sizes" class="results-list"><li>Awaiting scrape…</li></ul>
+            </div>
+          </div>
+          <div class="cell">
+            <div class="report-card">
+              <h2>Contrast Samples</h2>
+              <ul id="contrast" class="results-list"><li>Awaiting scrape…</li></ul>
+            </div>
+          </div>
+          <div class="cell">
+            <div class="report-card">
+              <h2>Touch Targets</h2>
+              <ul id="touch-targets" class="results-list"><li>Awaiting scrape…</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"></script>
+    <script>
+    const form = document.getElementById('scrape-form');
+    const statusEl = document.getElementById('status');
+    const urlInput = document.getElementById('url-input');
+    const fontList = document.getElementById('font-sizes');
+    const contrastList = document.getElementById('contrast');
+    const touchList = document.getElementById('touch-targets');
+    form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const url = urlInput.value.trim();
+    if (!url) return;
+    setStatus('Scraping… this can take a few seconds.', false);
+    clearLists();
+    try {
+    const response = await fetch('/scrape', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url })
+    });
+    const payload = await response.json();
+    if (!response.ok) {
+    throw new Error(payload.error || 'Scrape failed');
+    }
+    renderResults(payload);
+    setStatus('Scrape complete. Results saved to latest_scrape.json and listed below.', false);
+    } catch (error) {
+    setStatus(error.message, true);
+    }
+    });
+    function clearLists() {
+    fontList.innerHTML = '<li>Loading…</li>';
+    contrastList.innerHTML = '<li>Loading…</li>';
+    touchList.innerHTML = '<li>Loading…</li>';
+    }
+    function renderResults(data) {
+    renderFontSizes(data.font_sizes || []);
+    renderContrast(data.contrast || []);
+    const touch = data.touch_targets || {};
+    renderTouchTargets(touch.targets || [], touch.minimum_touch_target_px);
+    }
+    function renderFontSizes(sizes) {
+    fontList.innerHTML = '';
+    if (!sizes.length) {
+    fontList.innerHTML = '<li>No font sizes detected.</li>';
+    return;
+    }
+    sizes.forEach(size => {
+    const li = document.createElement('li');
+    li.textContent = size;
+    fontList.appendChild(li);
+    });
+    }
+    function renderContrast(entries) {
+    contrastList.innerHTML = '';
+    if (!entries.length) {
+    contrastList.innerHTML = '<li>No contrast pairs detected.</li>';
+    return;
+    }
+    entries.slice(0, 25).forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${item.text_snippet || '(no text)'}</strong>
+    <span class="pill">ratio ${item.contrast_ratio}</span>
+    <span class="pill">${Object.values(item.wcag || {}).join(', ')}</span>`;
+    contrastList.appendChild(li);
+    });
+    if (entries.length > 25) {
+    const li = document.createElement('li');
+    li.textContent = `+ ${entries.length - 25} more…`;
+    contrastList.appendChild(li);
+    }
+    }
+    function renderTouchTargets(targets, minSize) {
+    touchList.innerHTML = '';
+    if (!targets.length) {
+    touchList.innerHTML = '<li>No touch targets found.</li>';
+    return;
+    }
+    targets.slice(0, 25).forEach(item => {
+    const li = document.createElement('li');
+    const label = item.text || item.href || item.tag || 'target';
+    li.innerHTML = `<strong>${label}</strong>
+    <span class="pill">${item.width_px} × ${item.height_px}px</span>
+    <span class="pill">${item.status}</span>`;
+    touchList.appendChild(li);
+    });
+    if (targets.length > 25) {
+    const li = document.createElement('li');
+    li.textContent = `+ ${targets.length - 25} more…`;
+    touchList.appendChild(li);
+    }
+    if (minSize) {
+    const li = document.createElement('li');
+    li.textContent = `Minimum target used: ${minSize}px`;
+    touchList.appendChild(li);
+    }
+    }
+    function setStatus(message, isError) {
+    statusEl.textContent = message;
+    statusEl.className = 'status' + (isError ? ' error' : '');
+    }
+    async function loadExisting() {
+    try {
+    const res = await fetch('/results.json');
+    if (!res.ok) return;
+    const payload = await res.json();
+    renderResults(payload);
+    setStatus('Loaded the most recent scrape from latest_scrape.json.', false);
+    } catch (error) {
+    setStatus('', false);
+    }
+    }
+    loadExisting();
+    const moonIcon = document.querySelector('img[src$="moon.svg"]');
+    if (moonIcon) {
+    const toggleTarget = moonIcon.closest('a') || moonIcon;
+    toggleTarget.addEventListener('click', (event) => {
+    event.preventDefault();
+    document.documentElement.classList.toggle('dark');
+    });
+    }
+    </script>
+    </script>
+  </body>
+</html>
