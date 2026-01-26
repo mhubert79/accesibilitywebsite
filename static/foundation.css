@@ -3450,7 +3450,7 @@ textarea[readonly] {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border-radius: 0;
+  border-radius: 8px;
 }
 
 input[type=search] {
@@ -3577,7 +3577,7 @@ label.middle {
 }
 
 .input-group-field {
-  border-radius: 0;
+  border-radius: 16px;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0px;

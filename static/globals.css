@@ -2,6 +2,7 @@
 
 :root {
   --font-size: 16px;
+  --radius: 8px;
   --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --fs-body: var(--font-size);
   --fs-body-sm: calc(var(--font-size) * 0.95);
@@ -221,12 +222,23 @@ button:focus,
   border-color: var(--primary-hover);
 }
 
+.form input {
+  border-radius: var(--radius);
+  margin: 8px;
+  padding: 16px;
+  /*padding: 16px 16px 16px 16px;*/
+}
+
+.form button {
+  margin: 8px;
+}
+
 input,
 select,
 textarea {
   background-color: var(--input-background);
   border: 1px solid var(--border);
-  border-radius: 1rem;
+  border-radius: var(--radius);
   color: var(--text-base);
   padding: 0.75rem 0.9rem;
   width: 100%;
@@ -239,11 +251,13 @@ textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--ring);
   outline: none;
+  border-radius: var(--radius);
 }
 
 input::placeholder,
 textarea::placeholder {
   color: var(--text-muted);
+  border-radius: var(--radius);
 }
 
 fieldset {

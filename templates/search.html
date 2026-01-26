@@ -42,34 +42,39 @@
       </div>
     </header>
     <main>
-      <section class="section muted">
+      <section class="section">
         <div class="grid-container text-center">
           <h2>Website prüfen</h2>
           <p>Gib eine beliebige URL ein, um Schriftgrößen, Text-/Hintergrundkontrast und Schätzungen für Schaltflächengrößen zu erfassen.</p>
-        </div>
         <div class="section muted report-card">
           <form class="form" id="scrape-form">
-            <input type="url" id="url-input" name="url" placeholder="https://example.com" required>
-            <button class="button" type="submit"><href="" title="">Scrape</a></button>
+            <div class="grid-x grid-padding-x">
+            <div class="cell medium-10 large-10" >
+              <input type="url" id="url-input" name="url" placeholder="https://example.com" required>
+            </div>
+            <div class="cell medium-2 large-2">
+              <button class="button primary small" type="submit"><a href="" title="">Scrape</a></button>
+            </div>
+          </div>
           </form>
         </div>
         <div class="status" id="status"></div>
-        <div class="results-grid" id="results">
+        <div class="grid-x grid-margin-x grid-margin-y small-up-1 medium-up-3 steps" id="results">
           <div class="cell">
             <div class="report-card">
-              <h2>Font Sizes</h2>
+              <h4>Font Sizes</h4>
               <ul id="font-sizes" class="results-list"><li>Awaiting scrape…</li></ul>
             </div>
           </div>
           <div class="cell">
             <div class="report-card">
-              <h2>Contrast Samples</h2>
+              <h4>Contrast Samples</h4>
               <ul id="contrast" class="results-list"><li>Awaiting scrape…</li></ul>
             </div>
           </div>
           <div class="cell">
             <div class="report-card">
-              <h2>Touch Targets</h2>
+              <h4>Touch Targets</h4>
               <ul id="touch-targets" class="results-list"><li>Awaiting scrape…</li></ul>
             </div>
           </div>
@@ -79,6 +84,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"></script>
     <script>
+    $(document).foundation();
     const form = document.getElementById('scrape-form');
     const statusEl = document.getElementById('status');
     const urlInput = document.getElementById('url-input');
@@ -190,6 +196,7 @@
     }
     }
     loadExisting();
+
     const moonIcon = document.querySelector('img[src$="moon.svg"]');
     if (moonIcon) {
     const toggleTarget = moonIcon.closest('a') || moonIcon;
